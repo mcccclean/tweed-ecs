@@ -1,0 +1,7 @@
+{
+  "name": "tweed-ecs",
+  "version": "0.1.0",
+  "main": "index.js",
+  "author": "Tom McLean <tom.a.mclean@gmail.com>",
+  "license": "MIT"
+}
