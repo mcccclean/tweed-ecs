@@ -20,6 +20,8 @@ Manager.prototype.spawn = function(blueprint, params) {
     obj.message('init');
 
     this.newentities.push(obj);
+
+    return obj;
 };
 
 Manager.prototype.update = function(dt) {
