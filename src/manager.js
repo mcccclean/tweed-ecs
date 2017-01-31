@@ -19,8 +19,13 @@ Manager.prototype.findAll = function(cb) {
 };
 
 Manager.prototype.messageAll = function() {
+    var args = new Array(arguments.length);
+    for(var i = 1; i < args.length; ++i) {
+        args[i] = arguments[i];
+    }
+
     this.entities.forEach(function(e) {
-        e.message.apply(e, arguments);
+        e.message.apply(e, args);
     });
 };
 
