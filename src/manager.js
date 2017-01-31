@@ -10,6 +10,20 @@ function Manager() {
     this.id = 1;
 }
 
+Manager.prototype.findAny = function(cb) {
+    return this.entities.find(cb);
+};
+
+Manager.prototype.findAll = function(cb) {
+    return this.entities.filter(cb);
+};
+
+Manager.prototype.messageAll = function() {
+    this.entities.forEach(function(e) {
+        e.message.apply(e, arguments);
+    });
+};
+
 Manager.prototype.spawn = function(blueprint, params) {
     var obj = Object.assign(new Entity(), blueprint, params, {
         game: this,
@@ -37,8 +51,12 @@ Manager.prototype.update = function(dt) {
             return true;
         })
         .filter(e => {
-            // TODO: destroy callback on host
-            return !e.destroyed;
+            if(e.destroyed) {
+                e.message('destroy');
+                return false;
+            } else {
+                return true;
+            }
         });
     
     this.frame += 1;
